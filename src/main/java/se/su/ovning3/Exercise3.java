@@ -20,19 +20,19 @@ public class Exercise3 {
 
 	public void exportRecordings(String fileName) {
 		try {	
-			FileWriter fileWriter = new FileWriter("test_files/recording_output.txt");
+			FileWriter fileWriter = new FileWriter(fileName);
 			PrintWriter printWriter = new PrintWriter(fileWriter);
 			
 			for (Recording recording : recordings){
 				printWriter.println("<recording>");
-				printWriter.println("<artist>" + recording.getArtist() + "</artist>");
-				printWriter.println("<title>" + recording.getTitle() + "</title>");
-				printWriter.println("<year>" + recording.getYear() + "</year>");
-				printWriter.println("<genres>");
+				printWriter.println("\t<artist>" + recording.getArtist() + "</artist>");
+				printWriter.println("\t<title>" + recording.getTitle() + "</title>");
+				printWriter.println("\t<year>" + recording.getYear() + "</year>");
+				printWriter.println("\t<genres>");
 				for(String genre : recording.getGenre()){
-					printWriter.println("<genre>" + genre + "</genre>");
+					printWriter.println("\t\t<genre>" + genre + "</genre>");
 				}
-				printWriter.println("</genres>");
+				printWriter.println("\t</genres>");
 				printWriter.println("</recording>");
 			}
 		printWriter.close();
