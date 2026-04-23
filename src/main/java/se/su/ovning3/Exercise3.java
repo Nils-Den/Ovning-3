@@ -4,7 +4,9 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
@@ -17,13 +19,32 @@ public class Exercise3 {
 	private final List<Recording> recordings = new ArrayList<>();
 
 	public void exportRecordings(String fileName) {
-return blabka ;
+		try {	
+			FileWriter fileWriter = new FileWriter("test_files/recording_output.txt");
+			PrintWriter printWriter = new PrintWriter(fileWriter);
+			
+			for (Recording recording : recordings){
+				printWriter.println("<recording>");
+				printWriter.println("<artist>" + recording.getArtist() + "</artist>");
+				printWriter.println("<title>" + recording.getTitle() + "</title>");
+				printWriter.println("<year>" + recording.getYear() + "</year>");
+				printWriter.println("<genres>");
+				for(String genre : recording.getGenre()){
+					printWriter.println("<genre>" + genre + "</genre>");
+				}
+				printWriter.println("</genres>");
+				printWriter.println("</recording>");
+			}
+		printWriter.close();
 
+		} catch(FileNotFoundException e){
+			System.out.printf("%s not found%n", fileName);
+		}
+		catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 
-dljfekejdfklhelhfljfl
-jfejlfjelwf
-jfkejnflkelk
-nkjebfkjwjdlf
 	}
 
 	public void importRecordings(String fileName) {
