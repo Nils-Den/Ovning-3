@@ -44,7 +44,7 @@ public class Exercise3 {
 		printWriter.close();
 
 		} catch(FileNotFoundException e){
-			System.out.printf("%s not found%n", fileName);
+			e.printStackTrace();
 		}
 		catch (IOException e) {
 			e.printStackTrace();
@@ -66,7 +66,7 @@ public class Exercise3 {
 			fileReader.close();
 			reader.close();
 		} catch (FileNotFoundException e) {
-			System.out.printf("%s not found%n", fileName);
+			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -102,7 +102,7 @@ public class Exercise3 {
 
 
 		} catch (FileNotFoundException e){
-			System.out.printf("%s not found%n", fileName);
+			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -130,7 +130,7 @@ public class Exercise3 {
 		Recording returnRecording = new Recording(title, artist, year, parseGenre(noOfGenres, reader));
 		return returnRecording;
 		}catch (IOException e){
-			System.out.printf("%s not found%n", "bajs");
+			e.printStackTrace();
 		}
 		return null;
 	}
@@ -144,7 +144,7 @@ public class Exercise3 {
 
 				
 			}catch(IOException e){
-				System.out.printf("%s not found%n", "bajs");
+				e.printStackTrace();
 			}
 		}
 		return genres;
