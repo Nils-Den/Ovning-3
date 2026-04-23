@@ -1,14 +1,20 @@
 package se.su.ovning3;
 
 import java.io.BufferedReader;
+import java.io.DataInputStream;
+import java.io.DataOutput;
+import java.io.DataOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -68,6 +74,39 @@ public class Exercise3 {
 	}
 
 	public Map<Integer, Double> importSales(String fileName) {
+
+		try{
+			FileInputStream fis = new FileInputStream(fileName);
+			DataInputStream dis = new DataInputStream(fis);
+
+			Map<Integer, Double> returnMap = new HashMap<>();
+
+			int NoI = dis.readInt();
+			for(int i = 0; i< NoI; i++){
+				int year = dis.readInt();
+				int month = dis.readInt();
+				int day = dis.readInt();
+				double cash = dis.readDouble();
+
+				if(!returnMap.containsKey(year * 100 + month)){
+					returnMap.put((year * 100 + month), cash);
+				} else {
+					double value = returnMap.get(year * 100 + month);
+					returnMap.put((year * 100 + month), cash + value);
+					
+				}	
+			}
+			dis.close();
+			return returnMap;
+			
+
+
+		} catch (FileNotFoundException e){
+			System.out.printf("%s not found%n", fileName);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 		return null;
 	}
 
